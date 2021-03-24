@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import * as api from './api/apiService';
+import TabelaPedidos from './components/TableOrders/TableOrders';
+import { Container } from 'react-bootstrap';
+import PageDefault from './components/PageDefault/PageDefault';
+import PizzaProvider from './context/context';
 
-function App() {
+export default function App() {
+
+
+  const [allOrders, setAllOrders] = useState([]);
+
+  useEffect(() => {
+   
+
+    const getOrders = async () => {
+      const orders = await api.getAllOrders();
+      setAllOrders(orders);
+    };
+    
+    getOrders();
+  }, []);
+
+/* console.log(allOrders) */
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <PizzaProvider>
+      <Container>
+        <PageDefault>          
+          <TabelaPedidos allOrders={allOrders} className="container" />    
+        </PageDefault>
+      </Container>
+    </PizzaProvider>
+  )
+};
 
-export default App;

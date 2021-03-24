@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CadastroClientes from './pages/clientes';
+import CadastroPedidos from './pages/pedidos';
+import AdmPedidos from './components/Trello/admPedidos';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" component={App} exact />
+      <Route path="/cadastro/clientes" component={CadastroClientes} exact />
+      <Route path="/cadastro/pedidos" component={CadastroPedidos} exact />
+      <Route path="/admin-pedidos" component={AdmPedidos} exact />
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById('app')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
