@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/posts/';
-
+const API_URL_CLIENT = 'http://localhost:3001/client/';
+const API_URL_ORDER = 'http://localhost:3001/order/';
 
 async function getAllClients(){
-  const res = await axios.get(`${API_URL}clients`);
-  console.log(res.data);  
+  const res = await axios.get(`${API_URL_CLIENT}clients`);
+  //console.log(res.data);  
   return res.data;
 };
 
 async function getAllOrders(){
-  const res = await axios.get(`${'https://nossa-pizza-backend.herokuapp.com/'}orders`);
-  console.log(res); 
-  return res.data.orders;
+  const res = await axios.get(`${API_URL_ORDER}orders`);
+  //console.log(res.data); 
+  return res.data;
 };
 
 async function submitClient({ values }){

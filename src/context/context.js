@@ -9,13 +9,14 @@ export default function PizzaProvider({children}){
   useEffect(() => {
       const getOrders = async () => {
       const orders = await api.getAllOrders();
-      console.log(orders);
+      //console.log(orders);
       setOrder(orders);      
     }
     
     getOrders();
   }, []);
-
+  
+  //console.log(order)
 
   return(
     <PizzaContext.Provider 

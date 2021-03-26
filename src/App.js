@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as api from './api/apiService';
+//import {useData} from './context/context';
+//import * as api from './api/apiService';
 import TabelaPedidos from './components/TableOrders/TableOrders';
 import { Container } from 'react-bootstrap';
 import PageDefault from './components/PageDefault/PageDefault';
@@ -7,11 +8,11 @@ import PizzaProvider from './context/context';
 
 export default function App() {
 
+  //const {order} = useData();
 
-  const [allOrders, setAllOrders] = useState([]);
+  /* const [allOrders, setAllOrders] = useState([]);
 
-  useEffect(() => {
-   
+  useEffect(() => {   
 
     const getOrders = async () => {
       const orders = await api.getAllOrders();
@@ -19,15 +20,15 @@ export default function App() {
     };
     
     getOrders();
-  }, []);
+  }, []); */
 
-/* console.log(allOrders) */
+//console.log(order)
 
   return (
     <PizzaProvider>
       <Container>
         <PageDefault>          
-          <TabelaPedidos allOrders={allOrders} className="container" />    
+          <TabelaPedidos className="container" />    
         </PageDefault>
       </Container>
     </PizzaProvider>

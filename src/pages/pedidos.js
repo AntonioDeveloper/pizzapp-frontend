@@ -36,7 +36,7 @@ export default function CadastroPedidos() {
 
   }, []);
 
-
+console.log(allOrders)
 
   return (
     <PizzaProvider>
