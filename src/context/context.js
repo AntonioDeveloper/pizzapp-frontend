@@ -5,22 +5,30 @@ const PizzaContext = createContext();
 
 export default function PizzaProvider({children}){
   const [order, setOrder] = useState({});
+  const [statuses, setStatus] = useState({});
 
   useEffect(() => {
       const getOrders = async () => {
       const orders = await api.getAllOrders();
-      //console.log(orders);
       setOrder(orders);      
-    }
-    
+    }    
     getOrders();
   }, []);
   
-  //console.log(order)
+  useEffect(() => {
+    const getStatuses = async () => {
+    const status = await api.getOrderStatuses();
+    setStatus(status);
+    }
+    getStatuses();
+  }, []);
+
+  //console.log(statuses)
 
   return(
     <PizzaContext.Provider 
-    value={{order, setOrder}}
+    value={{order, setOrder,
+          statuses, setStatus}}
     >
       {children}
     </PizzaContext.Provider>
@@ -30,6 +38,6 @@ export default function PizzaProvider({children}){
 export function useData(){
   const context = useContext(PizzaContext);
   if(!context) throw new Error('useData must be used within a Provider');
-  const {order, setOrder} = context;
-  return {order, setOrder};
+  const {order, setOrder,statuses, setStatus} = context;
+  return {order, setOrder, statuses, setStatus};
 }

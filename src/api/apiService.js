@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL_CLIENT = 'http://localhost:3001/client/';
 const API_URL_ORDER = 'http://localhost:3001/order/';
+const API_URL_STATUSES = 'http://localhost:3001/status/';
 
 async function getAllClients(){
   const res = await axios.get(`${API_URL_CLIENT}clients`);
@@ -28,8 +29,11 @@ async function submitOrder({ values }){
   return res.data.orders;
 }
 
-async function updateOrderStatus(status, id, statuses){ 
-  await axios.put(`${process.env.REACT_APP_API_URL}novostatus/${id}`, {status, statuses});
+async function updateOrderStatus({item}){ 
+  const id = item._id;
+  console.log(id);
+  console.log(item);
+  await axios.patch(`${API_URL_ORDER}update/${id}`, {item});
 }
 
 async function searchBar(values){
@@ -45,6 +49,11 @@ async function searchBar(values){
   //await axios.get(`${process.env.REACT_APP_API_URL}${values}`, values);
 }
 
-export {getAllClients, getAllOrders, submitClient, submitOrder, updateOrderStatus, searchBar};
+async function getOrderStatuses(){
+  const res = await axios.get(`${API_URL_STATUSES}`);
+  return res.data;
+}
+
+export {getAllClients, getAllOrders, submitClient, submitOrder, updateOrderStatus, searchBar, getOrderStatuses};
 
 

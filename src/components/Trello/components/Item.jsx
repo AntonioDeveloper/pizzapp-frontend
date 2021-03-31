@@ -3,7 +3,11 @@ import { useDrag, useDrop } from "react-dnd";
 import Window from "./Window";
 import ITEM_TYPE from "../data/types";
 
-const Item = ({ item, index, moveItem, status}) => {
+const Item = ({ item, index, moveItem, status}) => {  
+ /*    console.log(item)
+    console.log(index)
+    console.log(moveItem)
+    console.log(status) */
     const ref = useRef(null);
 
     const [, drop] = useDrop({
@@ -37,11 +41,12 @@ const Item = ({ item, index, moveItem, status}) => {
     });
 
     const [{ isDragging }, drag] = useDrag({
-        item: { type: ITEM_TYPE, ...item, index },
+        type: ITEM_TYPE, 
+        item: {...item, index },
         collect: monitor => ({
-            isDragging: monitor.isDragging()
+            isDragging: !!monitor.isDragging()
         })
-    });
+    }); 
 
     const [show, setShow] = useState(false);
 
@@ -60,9 +65,15 @@ const Item = ({ item, index, moveItem, status}) => {
                 onClick={onOpen}
             >
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
-                <p className={"item-title"}>Pedido nº {item.id}</p>
+                <p className={"item-title"}>Pedido nº {item._id}</p>
                 <p>Cliente: {item.clientId}</p>
                 <p>Status: {item.status}</p>
+                <p>Inteira?: {item.split}</p>
+                <p>Molho extra?: {item.extraSauce}</p>
+                <p>Sabor: {item.pizza}</p>
+                <p>Massa: {item.dough}</p>
+                <p>Observações: {item.message}</p>
+                <p>Endereço de entrega: {item.delivery_address}</p>
                 <p className={"item-status"}>{item.icon}</p>
             </div>
             <Window

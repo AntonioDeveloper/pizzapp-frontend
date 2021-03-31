@@ -1,36 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
 import Col from "../components/Col";
-import { data, statuses } from "../data";
-import * as api from '../../../api/apiService';
+import {useData} from "../../../context/context";
 
-
-const Homepage = () => {
-    const [allOrders, setAllOrders] = useState([]);
-    const [items, setItems] = useState(data);
+const Homepage = () => {    
+    const {order, statuses} = useData();
+    const statusArr = Array.from(statuses)
+    const [items, setItems] = useState([]);     
     
-        useEffect(() => {
-                
-            const getOrders = async () => {
-              const orders = await api.getAllOrders();
-              setAllOrders(orders);
-            };
-        
-            getOrders();
-          }, []);
+    //Store values in the local storage     
+    useEffect(() => {
+        const data = localStorage.getItem('data');
+        if(data){
+            setItems(JSON.parse(data));
+        }
+    }, []);
+
+   useEffect(() => {
+        localStorage.setItem('data', JSON.stringify(order));
+    });
+
+ /*     useEffect(() => {
+        const parsedItems = JSON.parse(localStorage.getItem('data') || []);
+        setItems(parsedItems);
+    }, []); */
+
+    //console.log(order)
+    console.log(items)
 
     const onDrop = (item, monitor, status) => {
-        const mapping = statuses.find(si => si.status === status);
+        const mapping = statusArr.find(si => si.status === status);
+        //console.log(mapping);    
         
         setItems(prevState => {
-            const newItems = prevState
-            .filter(i => i.id !== item.id)
-            .concat({ ...item, status, icon: mapping.icon });        
+            //console.log(prevState)
+            const newItems = prevState            
+            .filter(i => i._id !== item._id)
+            .concat({ ...item, status, icon: mapping.icon });                  
             return [ ...newItems ];
-        });
+        });       
     };
     
+
     const moveItem = (dragIndex, hoverIndex) => {
         const item = items[dragIndex];
         setItems(prevState => {
@@ -41,17 +53,18 @@ const Homepage = () => {
     };
 
     return (
+        
         <div className={"row"}>
-            {statuses.map(s => {
-            /*     console.log(statuses) */
+            {statusArr.map(s => {
+                //console.log(statusArr);
                 return (
-                    <div key={s.status} className={"col-wrapper"}>
+                    <div key={s.status} className={"col-wrapper"}>            
                         <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
                         <DropWrapper onDrop={onDrop} status={s.status}>
                             <Col xs={12} sm={12} md={6} >
-                                {allOrders
+                                {items
                                 .filter(i => i.status === s.status)
-                                .map((i, idx) => <Item key={i.id} moveItem={moveItem} item={i} index={idx} status={s} statuses={statuses}/>
+                                .map((i, idx) => <Item key={i._id} moveItem={moveItem} item={i} index={idx} status={s} statuses={statuses}/>
                                 )}
                             </Col>
                         </DropWrapper>
