@@ -23,8 +23,7 @@ const DropWrapper = ({ onDrop, children, status }) => {
             item.icon = statuses[statusIndex].icon;
             onDrop(item, monitor, status);
             api.updateOrderStatus(item);
-            console.log(item.status);
-            console.log(item.icon);
+            //console.log(item);            
         },
         collect: monitor => ({
             isOver: monitor.isOver()
