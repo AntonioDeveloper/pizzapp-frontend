@@ -29,10 +29,10 @@ async function submitOrder({ values }){
   return res.data.orders;
 }
 
-async function updateOrderStatus({item}){ 
+async function updateOrderStatus(item){ 
   const id = item._id;
-  console.log(id);
-  console.log(item);
+  /* console.log(id); */
+  console.log(item); 
   await axios.patch(`${API_URL_ORDER}update/${id}`, {item});
 }
 

@@ -4,12 +4,11 @@ import Window from "./Window";
 import ITEM_TYPE from "../data/types";
 
 const Item = ({ item, index, moveItem, status}) => {  
- /*    console.log(item)
-    console.log(index)
-    console.log(moveItem)
-    console.log(status) */
+    //console.log(item)
+    //console.log(moveItem)
+    //console.log(status)
     const ref = useRef(null);
-
+    
     const [, drop] = useDrop({
         accept: ITEM_TYPE,
         hover(item, monitor) {
@@ -18,28 +17,28 @@ const Item = ({ item, index, moveItem, status}) => {
             }
             const dragIndex = item.index;
             const hoverIndex = index;
-
+            
             if (dragIndex === hoverIndex) {
                 return
             }
-
+            
             const hoveredRect = ref.current.getBoundingClientRect();
             const hoverMiddleY = (hoveredRect.bottom - hoveredRect.top) / 2;
             const mousePosition = monitor.getClientOffset();
             const hoverClientY = mousePosition.y - hoveredRect.top;
-
+            
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                 return;
             }
-
+            
             if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
                 return;
             }
             moveItem(dragIndex, hoverIndex);
             item.index = hoverIndex;
-        },
+        },        
     });
-
+    
     const [{ isDragging }, drag] = useDrag({
         type: ITEM_TYPE, 
         item: {...item, index },
@@ -47,15 +46,16 @@ const Item = ({ item, index, moveItem, status}) => {
             isDragging: !!monitor.isDragging()
         })
     }); 
-
+    
     const [show, setShow] = useState(false);
-
+    
     const onOpen = () => setShow(true);
-
+    
     const onClose = () => setShow(false);
-
+    
     drag(drop(ref));
-
+    //console.log(item)
+    
     return (
         <Fragment>
             <div

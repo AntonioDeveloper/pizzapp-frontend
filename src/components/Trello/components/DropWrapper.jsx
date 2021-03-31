@@ -6,9 +6,10 @@ import {useData} from "../../../context/context";
 import * as api from '../../../api/apiService';
 
 const DropWrapper = ({ onDrop, children, status }) => {
- 
-    const {statuses} = useData();
 
+    
+    const {statuses} = useData();
+    
     const [{ isOver }, drop] = useDrop({
         accept: ITEM_TYPE,
         canDrop: (item, monitor) => {
@@ -17,16 +18,18 @@ const DropWrapper = ({ onDrop, children, status }) => {
             return [itemIndex + 1, itemIndex - 1, itemIndex].includes(statusIndex);
         },
         drop: (item, monitor) => {
+            const statusIndex = statuses.findIndex(si => si.status === status);
+            item.status = status
+            item.icon = statuses[statusIndex].icon;
             onDrop(item, monitor, status);
-            api.updateOrderStatus({item});
-            //console.log(item);
+            api.updateOrderStatus(item);
+            console.log(item.status);
+            console.log(item.icon);
         },
         collect: monitor => ({
             isOver: monitor.isOver()
         })
-    });
-    
-
+    });    
     
     return (
         <div ref={drop} className={"drop-wrapper"}>

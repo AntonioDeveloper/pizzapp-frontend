@@ -27,22 +27,22 @@ const Homepage = () => {
     }, []); */
 
     //console.log(order)
-    console.log(items)
+    //console.log(items)
 
     const onDrop = (item, monitor, status) => {
         const mapping = statusArr.find(si => si.status === status);
         //console.log(mapping);    
         
         setItems(prevState => {
-            //console.log(prevState)
             const newItems = prevState            
             .filter(i => i._id !== item._id)
-            .concat({ ...item, status, icon: mapping.icon });                  
+            .concat({ ...item, status, icon: mapping.icon }); 
+            //console.log(...newItems)
             return [ ...newItems ];
         });       
     };
     
-
+    
     const moveItem = (dragIndex, hoverIndex) => {
         const item = items[dragIndex];
         setItems(prevState => {
