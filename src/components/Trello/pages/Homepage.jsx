@@ -19,7 +19,7 @@ const Homepage = () => {
 
    useEffect(() => {
         localStorage.setItem('data', JSON.stringify(order));
-    });
+    }, [order]);
 
  /*     useEffect(() => {
         const parsedItems = JSON.parse(localStorage.getItem('data') || []);

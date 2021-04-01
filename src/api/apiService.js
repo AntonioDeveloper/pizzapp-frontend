@@ -33,7 +33,7 @@ async function updateOrderStatus(item){
   const id = item._id;
   /* console.log(id); */
   console.log(item); 
-  await axios.patch(`${API_URL_ORDER}update/${id}`, {item});
+  await axios.put(`${API_URL_ORDER}update/${id}`, {item});
 }
 
 async function searchBar(values){
