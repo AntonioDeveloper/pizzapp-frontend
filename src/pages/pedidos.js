@@ -6,18 +6,20 @@ import Tabela from '../components/TableOrders/TableOrders';
 import { Container, Form } from 'react-bootstrap';
 //import Calendario from '../components/Calendario/Calendario';
 import PizzaProvider from '../context/context'
+import '../App.css';
 
 
 export default function CadastroPedidos() {
 
   const valoresIniciais = {
-    inteira_meio: "Inteira",
-    massa_fina_grossa: "Fina",
-    molhoExtra: "Sim",
-    sabor: [],
-    agenda: '',
-    enderecoEntrega: '',
-    observacoes: '',
+    status: "aberto",
+    icon: "⭕️",
+    split: true,
+    dough: "Fina",
+    extraSauce: true,
+    pizza: 'Muzzarela',
+    delivery_address: '',
+    message: '',
     clientId: ''
   }
 
@@ -50,31 +52,30 @@ export default function CadastroPedidos() {
           ]);
           api.submitOrder({ values });
           clearForm()
-          console.log(values.agenda);
-          
+          //console.log(values);          
         }} >
 
           {/* Radio Buttons para escolher pizza inteira ou meio-a-meio */}
 
           <Form.Group controlId="opcoes1">
-            <Form.Label>Pizza de 1 sabor ou meio-a-meio</Form.Label>
-            <Form.Control value={values.inteira_meio} as="select" name="inteira_meio" onChange={handleChange}>
-              <option value="Inteira">Inteira</option>
-              <option value="Meio-a-meio">Meio-a-meio</option>
+            <Form.Label className="form_label">Pizza de 1 sabor ou meio-a-meio</Form.Label>
+            <Form.Control value={values.split} as="select" name="split" onChange={handleChange}>
+              <option value="Não">Não</option>
+              <option value="Sim">Sim</option>
             </Form.Control>
           </Form.Group>
 
           <Form.Group controlId="opcoes2">
             <Form.Label>{"Molho extra?"}</Form.Label>
-            <Form.Control value={values.molhoExtra} as="select" name="molhoExtra" onChange={handleChange}>
-              <option value="Sim">Sim</option>
+            <Form.Control value={values.extraSauce} as="select" name="extraSauce" onChange={handleChange}>
               <option value="Não">Não</option>
+              <option value="Sim">Sim</option>
             </Form.Control>
           </Form.Group>
 
           <Form.Group controlId="sabores">
             <Form.Label>{"Escolha até 2 sabores para a pizza meio-a-meio"}</Form.Label>
-            <Form.Control value={values.sabor} as="select" name="sabor"  onChange={handleChange}>
+            <Form.Control value={values.pizza} as="select" name="pizza" onChange={handleChange}>
               <option value="Muzzarela">Muzzarela</option>
               <option value="Margerita">Margerita</option>
               <option value="4 Queijos">4 Queijos</option>
@@ -88,22 +89,22 @@ export default function CadastroPedidos() {
           
           <input label="Endereço de Entrega"
             type="text"
-            name="enderecoEntrega"
+            name="delivery_address"
             placeholder="Endereço de Entrega"
-            value={values.enderecoEntrega}
+            value={values.delivery_address}
             onChange={handleChange} />
 
 
           <Form.Group controlId="observacoes">
             <Form.Label>Observações do Pedido</Form.Label>
-            <Form.Control as="textarea" rows="3" name="observacoes" value={values.observacoes}
+            <Form.Control as="textarea" rows="3" name="message" value={values.message}
               onChange={handleChange} />
           </Form.Group>
 
           <input label="CPF"
-            type="number"
+            type="text"
             name="clientId"
-            placeholder="CPF"
+            placeholder="Cliente"
             value={values.clientId}
             onChange={handleChange} />
 

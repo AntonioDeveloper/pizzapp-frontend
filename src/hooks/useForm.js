@@ -18,7 +18,7 @@ function useForm(valoresIniciais) {
       infosDoEvento.target.getAttribute('name'),
       infosDoEvento.target.value,
       );
-      console.log(infosDoEvento.target.value);
+      //console.log(infosDoEvento.target.value);
   }
 
   /* function handleSabores(infosDoEvento) {

@@ -23,8 +23,9 @@ async function submitClient({ values }){
 };
 
 async function submitOrder({ values }){
-  await axios.post(`${process.env.REACT_APP_API_URL}cadastrarped`, values);
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}orders`);
+  console.log(values)
+  await axios.post(`${API_URL_ORDER}cadastrarped`, values);
+  const res = await axios.get(`${API_URL_ORDER}orders`);
   return res.data.orders;
 }
 
