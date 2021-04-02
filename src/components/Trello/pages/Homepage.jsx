@@ -8,7 +8,9 @@ const Homepage = () => {
     const {order, statuses} = useData();
     const statusArr = Array.from(statuses)
     const [items, setItems] = useState([]);     
-    
+    let newId = 0;
+    let counter = 0;
+
     //Store values in the local storage     
     useEffect(() => {
         const data = localStorage.getItem('data');
@@ -64,7 +66,11 @@ const Homepage = () => {
                             <Col xs={12} sm={12} md={6} >
                                 {items
                                 .filter(i => i.status === s.status)
-                                .map((i, idx) => <Item key={i._id} moveItem={moveItem} item={i} index={idx} status={s} statuses={statuses}/>
+                                .map((i, idx) => {
+                                    newId = counter;
+                                    counter++;
+                                return <Item key={i._id} moveItem={moveItem} item={i} index={idx} status={s} statuses={statuses} newId={newId}/>
+                            }
                                 )}
                             </Col>
                         </DropWrapper>

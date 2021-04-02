@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap';
 
 
 export default function Tabela({ allClients }) {
+let newId = 0;
 
   return (
     <Table striped responsive>
@@ -16,12 +17,14 @@ export default function Tabela({ allClients }) {
       </thead>
       <tbody>
         {allClients.map((client, index) => {
+          client._id = newId;
+          newId++;
           return (
             <tr key={index}>
               <th scope="row">{client._id}</th>
               <td>{client.name}</td>
               <td>{client.tel}</td>         
-              <td>{client.endereco}</td>
+              <td>{client.address}</td>
             </tr>
           );
         })

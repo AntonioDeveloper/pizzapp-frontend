@@ -3,6 +3,13 @@ import { Table } from 'react-bootstrap';
 
 export default function OrderList({orders}){
 
+  let i = 0;
+  orders.map(order => {
+    order._id = i;    
+    i++;
+    return i;
+     }); 
+
   return(
     <Table striped responsive>
       <thead>
@@ -18,7 +25,9 @@ export default function OrderList({orders}){
         </tr>
       </thead>
       <tbody>
-        {orders.map((order, index) => {          
+        {
+        
+        orders.map((order, index) => {          
           return (
             <tr key={index}>
               <th scope="row">{order._id}</th>

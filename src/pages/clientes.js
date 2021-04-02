@@ -10,9 +10,9 @@ export default function CadastroClientes() {
 
   const valoresIniciais = {
     id: '',
-    nomeCliente: '',
-    telefone: '',    
-    endereco: ''  
+    name: '',
+    tel: '',    
+    address: ''  
   }
 
   const { handleChange, values, clearForm } = useForm(valoresIniciais);
@@ -43,12 +43,12 @@ export default function CadastroClientes() {
           ]);
           api.submitClient({ values });
           clearForm()
-          console.log(allClients);
+          //console.log(allClients);
         }} >
 
           <input label="Nome do Cliente"
             type="text"
-            name="nomeCliente"
+            name="name"
             placeholder="Nome do Cliente"
             value={values.name}
             onChange={handleChange} />
@@ -62,7 +62,7 @@ export default function CadastroClientes() {
 
           <input label="Telefone"
             type="number"
-            name="telefone"
+            name="tel"
             placeholder="Telefone"
             value={values.tel}
             onChange={handleChange} />
@@ -76,7 +76,7 @@ export default function CadastroClientes() {
 
           <input label="Endereço"
             type="text"
-            name="endereco"
+            name="address"
             placeholder="Endereço residencial"
             value={values.address}
             onChange={handleChange} />

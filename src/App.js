@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import TabelaPedidos from './components/TableOrders/TableOrders';
 import { Container } from 'react-bootstrap';
 import PageDefault from './components/PageDefault/PageDefault';

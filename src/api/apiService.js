@@ -11,16 +11,15 @@ async function getAllClients(){
 };
 
 async function getAllOrders(){
-  const res = await axios.get(`${API_URL_ORDER}orders`);
-  //console.log(res.data); 
+  const res = await axios.get(`${API_URL_ORDER}orders`);  
   return res.data;
 };
 
-async function submitClient({ values }){
-  
-  await axios.post(`${process.env.REACT_APP_API_URL}cadastrarcli`, values);
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}clients`);
-  return res.data.clients;
+async function submitClient({ values }){  
+  console.log(values)
+  await axios.post(`${API_URL_CLIENT}cadastrarcli`, values);
+  const res = await axios.get(`${API_URL_CLIENT}clients`);
+  return res.data;
 };
 
 async function submitOrder({ values }){

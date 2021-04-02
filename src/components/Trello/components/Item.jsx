@@ -3,10 +3,10 @@ import { useDrag, useDrop } from "react-dnd";
 import Window from "./Window";
 import ITEM_TYPE from "../data/types";
 
-const Item = ({ item, index, moveItem, status}) => {  
-    //console.log(item)
-    //console.log(moveItem)
-    //console.log(status)
+const Item = ({ item, index, moveItem, status, newId}) => {  
+     /*   const itemId = newId.toString();
+       console.log(typeof(itemId))  */
+    
     const ref = useRef(null);
     
     const [, drop] = useDrop({
@@ -64,8 +64,9 @@ const Item = ({ item, index, moveItem, status}) => {
                 className={"item"}
                 onClick={onOpen}
             >
+                
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
-                <p className={"item-title"}>Pedido nº {item._id}</p>
+                <p className={"item-title"}>{item._id}</p>                
                 <p>Cliente: {item.clientId}</p>
                 <p>Status: {item.status}</p>
                 <p>Inteira?: {item.split}</p>

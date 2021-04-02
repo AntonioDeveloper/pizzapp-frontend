@@ -8,7 +8,6 @@ import { Container, Form } from 'react-bootstrap';
 import PizzaProvider from '../context/context'
 
 
-
 export default function CadastroPedidos() {
 
   const valoresIniciais = {
@@ -36,7 +35,7 @@ export default function CadastroPedidos() {
 
   }, []);
 
-console.log(allOrders)
+//console.log(allOrders)
 
   return (
     <PizzaProvider>
@@ -75,7 +74,7 @@ console.log(allOrders)
 
           <Form.Group controlId="sabores">
             <Form.Label>{"Escolha até 2 sabores para a pizza meio-a-meio"}</Form.Label>
-            <Form.Control value={values.sabor} as="select" name="sabor" multiple onChange={handleChange}>
+            <Form.Control value={values.sabor} as="select" name="sabor"  onChange={handleChange}>
               <option value="Muzzarela">Muzzarela</option>
               <option value="Margerita">Margerita</option>
               <option value="4 Queijos">4 Queijos</option>
@@ -83,7 +82,7 @@ console.log(allOrders)
               <option value="Brigadeiro">Brigadeiro</option>
               <option value="Beijinho">Beijinho</option>
             </Form.Control>
-          </Form.Group>
+          </Form.Group> 
 
          {/*  <Calendario name="agenda" /> */}
           

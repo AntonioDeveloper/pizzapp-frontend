@@ -11,7 +11,7 @@ const [ordersPerPage] = useState(5);
 //objetos no array
 const ordersArr = Array.from(order);
 
-console.log(order)
+//console.log(order)
 const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
 const currentOrders = ordersArr.slice(indexOfFirstOrder, indexOfLastOrder);
