@@ -13,7 +13,7 @@ const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
 const currentOrders = order.slice(indexOfFirstOrder, indexOfLastOrder);
 
-//console.log(Array.isArray(currentOrders))
+console.log(currentOrders);
 
 // Change page
 const paginate = (pageNumber) => setCurrentPage(pageNumber)
