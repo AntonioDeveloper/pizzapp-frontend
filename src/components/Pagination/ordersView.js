@@ -8,10 +8,12 @@ const {order} = useData();
 const [currentPage, setCurrentPage] = useState(1);
 const [ordersPerPage] = useState(5);
 
-console.log(typeof(ordersArr))
+//console.log(Array.isArray(order))
 const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
 const currentOrders = order.slice(indexOfFirstOrder, indexOfLastOrder);
+
+//console.log(Array.isArray(currentOrders))
 
 // Change page
 const paginate = (pageNumber) => setCurrentPage(pageNumber)
