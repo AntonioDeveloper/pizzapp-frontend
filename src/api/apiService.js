@@ -4,9 +4,6 @@ require('dotenv').config();
 const API_CLIENTS = process.env.REACT_APP_API_URL_CLIENT;
 const API_ORDERS = process.env.REACT_APP_API_URL_ORDER;
 const API_STATUSES = process.env.REACT_APP_API_URL_STATUSES;
-/* const API_URL_CLIENT = 'http://localhost:3001/client/';
-const API_URL_ORDER = 'http://localhost:3001/order/';
-const API_URL_STATUSES = 'http://localhost:3001/status/'; */
 
 async function getAllClients(){
   const res = await axios.get(`${API_CLIENTS}clients`);
