@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-export default function OrderList({orders}){
+export default function OrderList(orders){
 
  /*  let i = 0;
   orders.map(order => {
