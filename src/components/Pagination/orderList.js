@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-export default function OrderList(orders){
+export default function OrderList({orders}){
 
  /*  let i = 0;
   orders.map(order => {
@@ -9,7 +9,7 @@ export default function OrderList(orders){
     i++;
     return i;
      });  */
-
+     console.log(orders);
   return(
     <Table striped responsive>
       <thead>
@@ -25,8 +25,7 @@ export default function OrderList(orders){
         </tr>
       </thead>
       <tbody>
-        {
-        
+        {        
         orders.map((order, index) => {          
           return (
             <tr key={index}>
