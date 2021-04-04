@@ -5,7 +5,7 @@ export default function OrderList({orders}){
 
   let i = 0;
   orders.map(order => {
-    order._id = i;    
+    order.id = i;    
     i++;
     return i;
      }); 
