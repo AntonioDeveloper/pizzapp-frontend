@@ -2,7 +2,7 @@ import axios from 'axios';
 require('dotenv').config();
 
 const API_CLIENTS = 'process.env.REACT_APP_API_URL_CLIENT';
-const API_ORDERS = 'process.env.REACT_APP_API_URL_ORDER';
+const API_ORDERS = 'http://localhost:3001/client/';
 const API_STATUSES = 'process.env.REACT_APP_API_URL_STATUSES';
 
 async function getAllClients(){
