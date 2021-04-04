@@ -8,7 +8,7 @@ const {order} = useData();
 const [currentPage, setCurrentPage] = useState(1);
 const [ordersPerPage] = useState(5);
 
-//console.log(Array.isArray(order))
+console.log(order)
 const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
 const currentOrders = order.slice(indexOfFirstOrder, indexOfLastOrder);
