@@ -4,7 +4,7 @@ import * as api from '../api/apiService';
 const PizzaContext = createContext();
 
 export default function PizzaProvider({children}){
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState([]);
   const [statuses, setStatus] = useState({});
 
   useEffect(() => {

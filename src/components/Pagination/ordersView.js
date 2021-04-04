@@ -1,20 +1,17 @@
 import React, {useState} from 'react';
 import OrderList from './orderList';
 import Pagination from './pagination';
+import {useData} from '../../context/context';
 
-export default function PageControl({order}){
-
+export default function PageControl(){
+const {order} = useData();
 const [currentPage, setCurrentPage] = useState(1);
 const [ordersPerPage] = useState(5);
 
-//Necessário para conseguir acessar as propriedades dos 
-//objetos no array
-const ordersArr = Array.from(order);
-
-//console.log(order)
+console.log(typeof(ordersArr))
 const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-const currentOrders = ordersArr.slice(indexOfFirstOrder, indexOfLastOrder);
+const currentOrders = order.slice(indexOfFirstOrder, indexOfLastOrder);
 
 // Change page
 const paginate = (pageNumber) => setCurrentPage(pageNumber)
