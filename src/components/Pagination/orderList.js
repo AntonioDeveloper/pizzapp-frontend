@@ -10,7 +10,7 @@ export default function OrderList({orders}){
     i++;
     return i;
      });  */
-     console.log({orders});
+     console.log(orders);
   return(
     <Table striped responsive>
       <thead>
