@@ -1,17 +1,16 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import {useData} from '../../context/context';
 
-export default function OrderList(){
 
-  const {order} = useData();
+export default function OrderList({orders}){
+
  /*  let i = 0;
   orders.map(order => {
     order._id = i;    
     i++;
     return i;
      });  */
-     console.log(order);
+     console.log({orders});
   return(
     <Table striped responsive>
       <thead>
@@ -28,7 +27,7 @@ export default function OrderList(){
       </thead>
       <tbody>
         {        
-        order.map((order, index) => {          
+        orders.map((order, index) => {          
           return (
             <tr key={index}>
               <th scope="row">{order._id}</th>

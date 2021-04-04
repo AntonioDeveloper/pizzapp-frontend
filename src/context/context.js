@@ -23,7 +23,7 @@ export default function PizzaProvider({children}){
     getStatuses();
   }, []);
 
-  console.log(order)
+  //console.log(order)
 
   return(
     <PizzaContext.Provider 
