@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PageDefault from '../components/PageDefault/PageDefault';
 import useForm from '../hooks/useForm';
+import {useData} from '../context/context';
 import * as api from '../api/apiService';
 import Tabela from '../components/TableOrders/TableOrders';
 import { Container, Form } from 'react-bootstrap';
@@ -10,7 +11,7 @@ import '../App.css';
 
 
 export default function CadastroPedidos() {
-
+  //const {newIds} = useData();
   const valoresIniciais = {
     status: "aberto",
     icon: "⭕️",
@@ -23,28 +24,37 @@ export default function CadastroPedidos() {
     clientId: ''
   }
 
+  
   const { handleChange, values, clearForm } = useForm(valoresIniciais);
- 
+  
   const [allOrders, setAllOrders] = useState([]);
-
+  
   useEffect(() => {
     const getAllOrders = async () => {
       const orders = await api.getAllOrders();
       setAllOrders(orders);
     };
-
+    
     getAllOrders();
-
+    
   }, []);
-
-//console.log(allOrders)
-
+  
+  //console.log(newIds)
+  
   return (
     <PizzaProvider>
     <Container>
       <PageDefault>
         <h2>Cadastro de Pedidos</h2>
         <Form align="center" onSubmit={function handleSubmit(infosDoEvento) {
+          if(values.delivery_address === ""){
+            alert('Por favor, preencha o endereço de entrega.');            
+          };
+
+          if(values.clientId === ""){
+            alert('Por favor, preencha o id do cliente.');
+          };
+          
           infosDoEvento.preventDefault();
           setAllOrders([
             ...allOrders,
@@ -52,7 +62,7 @@ export default function CadastroPedidos() {
           ]);
           api.submitOrder({ values });
           clearForm()
-          //console.log(values);          
+          //console.log(values);               
         }} >
 
           {/* Radio Buttons para escolher pizza inteira ou meio-a-meio */}
@@ -101,14 +111,14 @@ export default function CadastroPedidos() {
               onChange={handleChange} />
           </Form.Group>
 
-          <input label="CPF"
+          <input label="Cliente"
             type="text"
             name="clientId"
-            placeholder="Cliente"
+            placeholder="ID Cliente"
             value={values.clientId}
             onChange={handleChange} />
 
-          <input type="submit" value="Cadastrar" />
+          <input type="submit" value="Cadastrar Pedido" />
 
         </Form>
 

@@ -28,9 +28,17 @@
   color: #61dafb;
 }
 
+h2 {
+  color: #414141;
+}
+
 .form-label {
   color: #000000;
   text-align: left;
+}
+
+label {
+  color: #414141;
 }
 
 @keyframes App-logo-spin {

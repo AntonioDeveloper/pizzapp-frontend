@@ -17,7 +17,7 @@ async function getAllOrders(){
 };
 
 async function submitClient({ values }){  
-  console.log(values)
+  //console.log(values)
   await axios.post(`${API_CLIENTS}cadastrarcli`, values);
   const res = await axios.get(`${API_CLIENTS}clients`);
   return res.data;

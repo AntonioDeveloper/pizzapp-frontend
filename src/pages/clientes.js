@@ -5,7 +5,6 @@ import * as api from '../api/apiService';
 import Tabela from '../components/TableClients/TableClients';
 import { Container } from 'react-bootstrap';
 
-
 export default function CadastroClientes() {
 
   const valoresIniciais = {
@@ -28,22 +27,27 @@ export default function CadastroClientes() {
     getClients();
 
   }, []);
-
-
   
   return (
     <Container>
       <PageDefault>
         <h2>Cadastro de Clientes</h2>
         <form align="center" onSubmit={function handleSubmit(infosDoEvento) {
-          infosDoEvento.preventDefault();
-          setAllClients([
-            ...allClients,
-            values
-          ]);
-          api.submitClient({ values });
-          clearForm()
-          //console.log(allClients);
+          console.log(values);
+          const pattName = /([^A-z\s])/g;    
+         
+          if(values.name.match(pattName) || values.name === "" || values.tel ==="" || values.address === ""){
+            alert("Números, caracteres especiais e sem preenchimento não são permitidos aqui");
+              return;
+          } else {
+            infosDoEvento.preventDefault();
+            setAllClients([
+              ...allClients,
+              values
+            ]);
+            api.submitClient({ values });
+            clearForm();            
+          }        
         }} >
 
           <input label="Nome do Cliente"
@@ -52,27 +56,16 @@ export default function CadastroClientes() {
             placeholder="Nome do Cliente"
             value={values.name}
             onChange={handleChange} />
-
-        {/*   <input label="CPF"
-            type="number"
-            name="id"
-            placeholder="CPF"
-            value={values.id}
-            onChange={handleChange} /> */}
+            &nbsp;
 
           <input label="Telefone"
-            type="number"
+            type="tel"
             name="tel"
-            placeholder="Telefone"
+            placeholder="(DDD) 99999-9999"
+            pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"
             value={values.tel}
-            onChange={handleChange} />
-
-         {/*  <input label="E-mail"
-            type="text"
-            name="email"
-            placeholder="E-mail"
-            value={values.email}
-            onChange={handleChange} /> */}
+            onChange={handleChange} />        
+            &nbsp;
 
           <input label="Endereço"
             type="text"
@@ -80,13 +73,7 @@ export default function CadastroClientes() {
             placeholder="Endereço residencial"
             value={values.address}
             onChange={handleChange} />
-
-    {/*       <input label="Endereço de Entrega"
-            type="text"
-            name="enderecoEntrega"
-            placeholder="Endereço de Entrega"
-            value={values.enderecoEntrega}
-            onChange={handleChange} /> */}
+            &nbsp;
 
           <input type="submit" value="Cadastrar" />
 
